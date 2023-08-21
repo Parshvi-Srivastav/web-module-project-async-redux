@@ -1,34 +1,42 @@
-import { GET_JOKES_START, GET_JOKES_ALL, GET_JOKES_SUCCESS, GET_JOKES_FAILURE, LOAD_JOKES_ALL, SET_CURRENT_JOKE } from "../actions"
+import {
+  GET_JOKES_START,
+  GET_JOKES_ALL,
+  GET_JOKES_SUCCESS,
+  GET_JOKES_FAILURE,
+  LOAD_JOKES_ALL,
+  SET_CURRENT_JOKE,
+  
+} from "../actions";
 
 const initialState = {
-    jokes: {
-        setup: "",
-        punchline: "",
-        id: 0,
-        type: ""
-    },
-    isFetching: false,
-    error: '',
-    dynamic: false,
-    displayJokes: [],
-    currentJoke: {}
-}
+  jokes: {
+    setup: "",
+    punchline: "",
+    id: 0,
+    type: "",
+  },
+  isFetching: false,
+  error: "",
+  dynamic: false,
+  displayJokes: [],
+  currentJoke: {},
+};
 
 const jokeReducer = (state = initialState, action) => {
-    switch (action.type) {
-      case GET_JOKES_SUCCESS:
-    console.log("Reducer - GET_JOKES_SUCCESS:", action.payload);
-    return {
-        ...state, isFetching: false, jokes: action.payload, dynamic: true
-    }
-        default:
-            return state;
-    }
-
-}
+  switch (action.type) {
+    case GET_JOKES_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        displayJokes: action.payload,
+        dynamic: true,
+      };
+    default:
+      return state;
+  }
+};
 
 export default jokeReducer;
-
 
 // case GET_JOKES_START:
 //     console.log("Reducer - GET_JOKES_START:", action.payload);
